@@ -18,22 +18,20 @@ You are given that NF(3,10000) mod 3^20=624955285.
 Find NF(61,10^7) mod 61^10
 """
 
-P, Q, N = 61, 10**7, 10
-MOD = P**N
+P, Q, N, MOD = 61, 10**7, 10, 50515093
+
 
 s = 290797
 sum_1 = 0
 
 for n in range(1, N + 1):
-    s = s**2 % 50515093
-    sum_1 += s % P * (P ** n - 1) // (P - 1)
+    s = s**2 % MOD
+    sum_1 += s % P * (P**n - 1)
 
 sum_2 = 0
 
 for n in range(N + 1, Q + 1):
-    s = s**2 % 50515093
+    s = s**2 % MOD
     sum_2 += s % P
 
-sum_1 += sum_2 * (P ** N - 1) // (P - 1)
-
-print(sum_1 % P ** N)
+print((sum_1 + sum_2 * (P**N - 1)) // (P - 1) % P**N)
