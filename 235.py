@@ -23,7 +23,7 @@ n = 5000
 
 def u(k, r):
     """Function u given in problem."""
-    return (900 - 3 * k) * r ** (k - 1)
+    return (900 - 3 * k) * r**(k - 1)
 
 
 def s(n, r):
