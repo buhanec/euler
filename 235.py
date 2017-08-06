@@ -12,6 +12,7 @@ Give your answer rounded to 12 places behind the decimal point.
 """
 
 from functools import partial
+from math import copysign
 
 TARGET = -600_000_000_000
 
@@ -33,7 +34,7 @@ def s(n, r):
 sum_ = s(n, r)
 
 while abs(TARGET - sum_) > 1:
-    r += jump if s(n, r) > TARGET else - jump
+    r += copysign(jump, s(n, r) - TARGET)
     jump /= 2
     sum_ = s(n, r)
 
